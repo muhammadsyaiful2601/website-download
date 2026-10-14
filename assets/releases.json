@@ -1,0 +1,56 @@
+{
+  "_comment": "Salinan cadangan data rilis. Diperbarui otomatis oleh workflow sync-releases.yml. Dipakai hanya bila GitHub API gagal.",
+  "updated_at": "2026-10-13T11:44:30Z",
+  "releases": [
+    {
+      "tag_name": "v1.5.9",
+      "name": "1.5.9",
+      "published_at": "2026-10-13T11:44:18Z",
+      "html_url": "https://github.com/muhammadsyaiful2601/peminjaman-releases/releases/tag/v1.5.9",
+      "prerelease": false,
+      "body": "## Fitur Baru\n\n- **Halaman \"Tentang Aplikasi\".** Menu baru yang menampilkan ringkasan fungsi sistem, profil tim pengembang (developer, support, teknisi), serta galeri dokumentasi tim.\n\n## Peningkatan\n\n- Menu samping kini memiliki grup **\"Tentang\"** yang mengarahkan ke halaman informasi aplikasi dan tim pengelola.\n- Halaman baru menampilkan logo/identitas instansi sesuai pengaturan branding yang aktif.",
+      "assets": [
+        {
+          "name": "Peminjaman-Barang-PNP-Setup-1.5.9.exe",
+          "size": 132895538,
+          "download_count": 2,
+          "browser_download_url": "https://github.com/muhammadsyaiful2601/peminjaman-releases/releases/download/v1.5.9/Peminjaman-Barang-PNP-Setup-1.5.9.exe"
+        },
+        {
+          "name": "Peminjaman-Barang-PNP-Setup-1.5.9.exe.blockmap",
+          "size": 137514,
+          "download_count": 2,
+          "browser_download_url": "https://github.com/muhammadsyaiful2601/peminjaman-releases/releases/download/v1.5.9/Peminjaman-Barang-PNP-Setup-1.5.9.exe.blockmap"
+        },
+        {
+          "name": "latest.yml",
+          "size": 371,
+          "download_count": 5,
+          "browser_download_url": "https://github.com/muhammadsyaiful2601/peminjaman-releases/releases/download/v1.5.9/latest.yml"
+        }
+      ]
+    },
+    {
+      "tag_name": "v1.5.8",
+      "name": "1.5.8",
+      "published_at": "2026-10-07T00:37:34Z",
+      "html_url": "https://github.com/muhammadsyaiful2601/peminjaman-releases/releases/tag/v1.5.8",
+      "prerelease": false,
+      "body": "## Perbaikan\n\n- Pembaruan aplikasi kini mengambil installer dan metadata dari repo publik khusus rilis, sehingga source code dapat tetap privat.\n- Instalasi versi sebelumnya perlu diperbarui ke versi ini satu kali secara manual.",
+      "assets": [
+        {
+          "name": "Peminjaman-Barang-PNP-Setup-1.5.8.exe",
+          "size": 132736466,
+          "download_count": 2,
+          "browser_download_url": "https://github.com/muhammadsyaiful2601/peminjaman-releases/releases/download/v1.5.8/Peminjaman-Barang-PNP-Setup-1.5.8.exe"
+        },
+        {
+          "name": "latest.yml",
+          "size": 371,
+          "download_count": 18,
+          "browser_download_url": "https://github.com/muhammadsyaiful2601/peminjaman-releases/releases/download/v1.5.8/latest.yml"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1280" height="800" fill="#f8fafc"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="250" height="800" fill="#1d4ed8"/>
+  <circle cx="34" cy="34" r="16" fill="#93c5fd"/>
+  <text x="34" y="40" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a8a">PN</text>
+  <text x="60" y="30" font-size="13" font-weight="700" fill="#ffffff">Sistem Peminjaman…</text>
+  <text x="60" y="48" font-size="10.5" fill="#bfdbfe">POLITEKNIK NEGERI PADANG</text>
+
+  <text x="24" y="100" font-size="10.5" font-weight="700" fill="#93c5fd">OPERASIONAL</text>
+  <rect x="14" y="112" width="222" height="36" rx="10" fill="#ffffff"/>
+  <rect x="28" y="126" width="12" height="12" rx="3" fill="none" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="50" y="136" font-size="12.5" font-weight="600" fill="#1d4ed8">Dashboard</text>
+  <g fill="#dbeafe" font-size="12.5">
+    <text x="50" y="174">Katalog Barang</text>
+    <text x="50" y="208">Peminjaman</text>
+    <text x="50" y="242">Buat Peminjaman</text>
+    <text x="50" y="276">Scan Pengembalian</text>
+  </g>
+
+  <text x="24" y="316" font-size="10.5" font-weight="700" fill="#93c5fd">DOKUMEN</text>
+  <g fill="#dbeafe" font-size="12.5">
+    <text x="50" y="344">Peminjaman Skala Besar</text>
+    <text x="50" y="378">Bebas Labor</text>
+    <text x="50" y="412">Laporan</text>
+  </g>
+
+  <text x="24" y="452" font-size="10.5" font-weight="700" fill="#93c5fd">MANAJEMEN</text>
+  <g fill="#dbeafe" font-size="12.5">
+    <text x="50" y="480">Data Mahasiswa</text>
+    <text x="50" y="514">Data Tendik &amp; Dosen</text>
+    <text x="50" y="548">Kelola User</text>
+    <text x="50" y="582">Kelola Teknisi</text>
+    <text x="50" y="616">Pengaturan Sistem</text>
+  </g>
+
+  <text x="24" y="656" font-size="10.5" font-weight="700" fill="#93c5fd">TENTANG</text>
+  <text x="50" y="684" font-size="12.5" fill="#dbeafe">Tentang Aplikasi</text>
+
+  <!-- Footer sidebar -->
+  <rect x="0" y="726" width="250" height="74" fill="#1e40af"/>
+  <circle cx="34" cy="762" r="15" fill="#ffffff" opacity="0.2"/>
+  <text x="34" y="767" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">A</text>
+  <text x="60" y="758" font-size="12.5" font-weight="600" fill="#ffffff">Admin Utama</text>
+  <text x="60" y="775" font-size="11" fill="#bfdbfe">Petugas Utama</text>
+
+  <!-- Main -->
+  <text x="292" y="66" font-size="27" font-weight="700" fill="#0f172a">Dashboard Operasional</text>
+  <text x="292" y="96" font-size="13" fill="#64748b">Selamat Datang Kembali, <tspan font-weight="700" fill="#0f172a">Admin Utama</tspan>!</text>
+  <rect x="905" y="42" width="170" height="34" rx="17" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="920" y="64" font-size="11" fill="#64748b">Rabu, 14 Oktober 2026</text>
+  <rect x="1085" y="42" width="150" height="34" rx="17" fill="#dcfce7" stroke="#bbf7d0"/>
+  <text x="1110" y="64" font-size="11" font-weight="600" fill="#15803d">Sistem Online</text>
+
+  <!-- Stat cards -->
+  <g>
+    <rect x="292" y="122" width="222" height="128" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="311" y="141" width="38" height="38" rx="10" fill="#eff6ff"/>
+    <text x="330" y="166" text-anchor="middle" font-size="16" fill="#2563eb">&#9724;</text>
+    <text x="311" y="212" font-size="26" font-weight="700" fill="#0f172a">0</text>
+    <text x="311" y="233" font-size="11" font-weight="600" fill="#64748b">TOTAL BARANG</text>
+
+    <rect x="530" y="122" width="222" height="128" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="549" y="141" width="38" height="38" rx="10" fill="#eef2ff"/>
+    <text x="568" y="166" text-anchor="middle" font-size="16" fill="#4f46e5">&#8646;</text>
+    <text x="549" y="212" font-size="26" font-weight="700" fill="#0f172a">0</text>
+    <text x="549" y="233" font-size="11" font-weight="600" fill="#64748b">TOTAL PEMINJAMAN</text>
+
+    <rect x="768" y="122" width="222" height="128" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="787" y="141" width="38" height="38" rx="10" fill="#fff7ed"/>
+    <text x="806" y="166" text-anchor="middle" font-size="16" fill="#ea580c">&#9201;</text>
+    <text x="787" y="212" font-size="26" font-weight="700" fill="#0f172a">0</text>
+    <text x="787" y="233" font-size="11" font-weight="600" fill="#64748b">SEDANG DIPINJAM</text>
+
+    <rect x="1006" y="122" width="222" height="128" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="1025" y="141" width="38" height="38" rx="10" fill="#ecfdf5"/>
+    <text x="1044" y="166" text-anchor="middle" font-size="16" fill="#16a34a">&#10003;</text>
+    <text x="1025" y="212" font-size="26" font-weight="700" fill="#0f172a">0</text>
+    <text x="1025" y="233" font-size="11" font-weight="600" fill="#64748b">SUDAH DIKEMBALIKAN</text>
+  </g>
+
+  <!-- Quick actions -->
+  <rect x="292" y="272" width="300" height="74" rx="14" fill="#2563eb"/>
+  <rect x="311" y="291" width="38" height="38" rx="10" fill="#ffffff" opacity="0.18"/>
+  <text x="330" y="316" text-anchor="middle" font-size="17" fill="#ffffff">+</text>
+  <text x="361" y="304" font-size="13.5" font-weight="700" fill="#ffffff">Buat Peminjaman Baru</text>
+  <text x="361" y="324" font-size="11.5" fill="#dbeafe">Catat transaksi peminjaman</text>
+
+  <rect x="608" y="272" width="300" height="74" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="627" y="291" width="38" height="38" rx="10" fill="#eff6ff"/>
+  <text x="646" y="316" text-anchor="middle" font-size="15" fill="#2563eb">&#128218;</text>
+  <text x="677" y="304" font-size="13.5" font-weight="600" fill="#0f172a">Lihat Katalog Barang</text>
+  <text x="677" y="324" font-size="11.5" fill="#64748b">Cek ketersediaan barang</text>
+
+  <rect x="924" y="272" width="304" height="74" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="943" y="291" width="38" height="38" rx="10" fill="#eff6ff"/>
+  <text x="962" y="316" text-anchor="middle" font-size="15" fill="#2563eb">&#8981;</text>
+  <text x="993" y="304" font-size="13.5" font-weight="600" fill="#0f172a">Scan Pengembalian QR</text>
+  <text x="993" y="324" font-size="11.5" fill="#64748b">Verifikasi pengembalian barang</text>
+
+  <!-- Transactions -->
+  <rect x="292" y="372" width="936" height="200" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="316" y="412" font-size="16" font-weight="700" fill="#0f172a">Transaksi Terbaru</text>
+  <text x="1120" y="412" font-size="12.5" font-weight="600" fill="#2563eb">Lihat Semua</text>
+  <line x1="292" y1="430" x2="1228" y2="430" stroke="#e2e8f0"/>
+  <text x="760" y="500" text-anchor="middle" font-size="14" fill="#64748b">Belum Ada Transaksi Peminjaman.</text>
+
+  <text x="760" y="762" text-anchor="middle" font-size="11" fill="#94a3b8">&#169; developed by Muhammad Syaiful</text>
+</svg>

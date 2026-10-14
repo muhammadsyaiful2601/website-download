@@ -1,0 +1,71 @@
+name: Deploy ke GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      - name: Simpan cache rilis (fallback offline)
+        run: |
+          mkdir -p assets
+          curl -sSL \
+            "https://api.github.com/repos/muhammadsyaiful2601/peminjaman-releases/releases?per_page=20" \
+            -o /tmp/releases-raw.json || true
+          node -e '
+            const fs = require("fs");
+            let list = [];
+            try {
+              const raw = JSON.parse(fs.readFileSync("/tmp/releases-raw.json", "utf8"));
+              list = (Array.isArray(raw) ? raw : [])
+                .filter((r) => !r.draft && r.tag_name)
+                .map((r) => ({
+                  tag_name: r.tag_name,
+                  name: r.name,
+                  published_at: r.published_at,
+                  html_url: r.html_url,
+                  prerelease: !!r.prerelease,
+                  body: r.body || "",
+                  assets: (r.assets || []).map((a) => ({
+                    name: a.name,
+                    size: a.size,
+                    download_count: a.download_count,
+                    browser_download_url: a.browser_download_url,
+                  })),
+                }));
+            } catch (e) {}
+            if (!list.length) {
+              console.log("Gagal mengambil rilis, cache lama dipertahankan.");
+              process.exit(0);
+            }
+            fs.writeFileSync(
+              "assets/releases.json",
+              JSON.stringify({ updated_at: new Date().toISOString(), releases: list }, null, 2)
+            );
+          '
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

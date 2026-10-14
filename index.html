@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peminjaman Barang PNP — Download Aplikasi</title>
+<meta name="description" content="Download aplikasi Sistem Peminjaman & Management Inventaris Politeknik Negeri Padang. Selalu versi terbaru." />
+<link rel="icon" href="assets/logo.png" type="image/png" />
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div class="page">
+<div class="shell">
+
+  <!-- Header -->
+  <header class="topbar">
+    <a class="brand" href="#">
+      <img src="assets/logo.png" data-fallback="assets/logo.svg" alt="Logo Peminjaman Barang PNP" />
+      <span class="brand-text">Sistem Peminjaman &amp; Management Inventaris<small>POLITEKNIK NEGERI PADANG</small></span>
+    </a>
+
+    <nav class="nav" id="main-nav">
+      <a href="#fitur">Fitur</a>
+      <a href="#alur">Cara Kerja</a>
+      <a href="#tampilan">Tampilan</a>
+      <a href="#unduh">Download</a>
+      <a href="#riwayat">Riwayat</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary btn-small" href="#unduh">Download</a>
+    </nav>
+
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="main-nav">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="badge" id="version-badge">Memuat versi terbaru…</span>
+      <h1>Cara tercepat mendownload aplikasi Peminjaman Barang PNP.</h1>
+      <p class="lead">
+        Aplikasi desktop untuk <strong>inventaris</strong>, <strong>peminjaman multi-barang</strong>,
+        <strong>pengembalian dengan verifikasi foto &amp; kondisi</strong>, <strong>peminjaman resmi (surat)</strong>,
+        <strong>laporan resmi</strong>, serta <strong>bukti transaksi berbasis QR Code + email</strong>.
+        Peminjam tidak membuat akun — petugas yang mencatat dan menyerahkan barang.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" id="download-btn" href="#" data-state="loading">
+          <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <span id="download-btn-text">Memuat…</span>
+        </a>
+        <a class="btn btn-outline" id="release-btn" href="#" target="_blank" rel="noopener">Lihat Rilis</a>
+      </div>
+
+      <ul class="meta">
+        <li><span id="meta-size">—</span> ukuran file</li>
+        <li><span id="meta-date">—</span> tanggal rilis</li>
+        <li><span id="meta-count">—</span> kali diunduh</li>
+      </ul>
+      <p class="note" id="os-note">Installer untuk Windows 10/11 (64-bit), butuh ruang kosong minimal 1 GB.</p>
+    </div>
+
+    <div class="hero-visual">
+      <div class="mockup">
+        <div class="mockup-bar">
+          <span></span><span></span><span></span>
+          <em>dashboard — peminjaman barang pnp</em>
+        </div>
+        <img src="assets/shots/dashboard.png" data-fallback="assets/screenshot-dashboard.svg" alt="Tampilan dashboard aplikasi" />
+      </div>
+      <div class="mockup-card">
+        <img src="assets/shots/splash.png" data-fallback="assets/screenshot-splash.svg" alt="Splash screen aplikasi" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Tampilan aplikasi -->
+  <section class="section section-tint" id="tampilan">
+    <div class="inner">
+      <span class="eyebrow">Galeri</span>
+      <h2 class="section-title">Tampilan aplikasi</h2>
+      <p class="section-sub">Klik salah satu foto untuk melihat layar penuh.</p>
+
+      <div class="filters" id="gallery-filters" role="tablist">
+        <button class="pill is-active" data-filter="all" type="button">Semua</button>
+        <button class="pill" data-filter="splash" type="button">Loading</button>
+        <button class="pill" data-filter="login" type="button">Login</button>
+        <button class="pill" data-filter="dashboard" type="button">Dashboard</button>
+        <button class="pill" data-filter="peminjaman" type="button">Peminjaman</button>
+        <button class="pill" data-filter="branding" type="button">White Label</button>
+      </div>
+
+      <div class="carousel">
+        <button class="nav-btn nav-prev" id="gallery-prev" type="button" aria-label="Sebelumnya">
+          <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+
+        <div class="carousel-track is-marquee" id="gallery-track">
+          <div class="marquee-group" id="gallery-group">
+            <figure class="shot" data-category="splash">
+              <img src="assets/shots/splash.png" data-fallback="assets/screenshot-splash.svg" alt="Splash screen aplikasi" loading="lazy" />
+              <figcaption>Loading awal — logo instansi dan proses menyiapkan aplikasi.</figcaption>
+            </figure>
+            <figure class="shot" data-category="login">
+              <img src="assets/shots/login.png" data-fallback="assets/screenshot-login.svg" alt="Halaman masuk akun petugas" loading="lazy" />
+              <figcaption>Masuk akun — akses khusus petugas laboratorium.</figcaption>
+            </figure>
+            <figure class="shot" data-category="dashboard">
+              <img src="assets/shots/dashboard.png" data-fallback="assets/screenshot-dashboard.svg" alt="Dashboard operasional" loading="lazy" />
+              <figcaption>Dashboard — ringkasan barang, peminjaman, dan pengembalian.</figcaption>
+            </figure>
+            <figure class="shot" data-category="peminjaman">
+              <img src="assets/shots/form-peminjaman.png" data-fallback="assets/screenshot-form.svg" alt="Form peminjaman barang baru" loading="lazy" />
+              <figcaption>Form peminjaman — pilih barang dan data peminjam.</figcaption>
+            </figure>
+            <figure class="shot" data-category="branding">
+              <img src="assets/shots/white-label.png" data-fallback="assets/screenshot-splash.svg" alt="Tampilan white label instansi" loading="lazy" />
+              <figcaption>White label — identitas instansi mengikuti pengaturan branding.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <button class="nav-btn nav-next" id="gallery-next" type="button" aria-label="Berikutnya">
+          <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fitur -->
+  <section class="section" id="fitur">
+<h2 class="section-title">Fitur lengkap aplikasi</h2>
+      <p class="section-sub">Semua kebutuhan laboratorium dalam satu aplikasi desktop.</p>
+
+    <div class="features">
+      <article class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3 4 7v6c0 4.4 3.4 7.6 8 8 4.6-.4 8-3.6 8-8V7z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Inventaris &amp; stok akurat</h3>
+        <p>Kode unik, kategori, stok, dan gambar barang. Stok dikunci atomik saat peminjaman dibuat.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 7h13l3 3v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/><path d="M9 7V5a2 2 0 0 1 2-2h4l3 3"/></svg>
+        </div>
+        <h3>Peminjaman multi-barang</h3>
+        <p>Satu transaksi bisa berisi beberapa jenis barang dengan jumlah unit berbeda.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 17v3h-3"/></svg>
+        </div>
+        <h3>Bukti QR Code + email</h3>
+        <p>Email memuat QR Code langsung, kode peminjaman, dan lampiran PDF bukti.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>Verifikasi foto pengembalian</h3>
+        <p>Scan QR atau kode peminjaman, pilih kondisi barang, lalu foto bukti pengembalian.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+        </div>
+        <h3>Surat resmi &amp; laporan</h3>
+        <p>Surat peminjaman skala besar, surat bebas/tanggungan labor, dan laporan PDF resmi.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        </div>
+        <h3>Data peminjam lengkap</h3>
+        <p>Mahasiswa, tendik, dosen, dan umum — lengkap dengan impor spreadsheet Google Sheets.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        </div>
+        <h3>Pembaruan otomatis</h3>
+        <p>Aplikasi cek versi baru di latar belakang dan memasang pembaruan secara senyap.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3Z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+        </div>
+        <h3>Backup &amp; pemulihan</h3>
+        <p>Backup mingguan otomatis (database + foto) dan pemulihan data dengan satu klik.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 8v4M10 10h4"/></svg>
+        </div>
+        <h3>Tanpa server tambahan</h3>
+        <p>PHP dan database SQLite sudah disertakan. Tidak perlu Laragon, XAMPP, atau MySQL.</p>
+      </article>
+    </div>
+
+    <div class="center-cta">
+      <a class="btn btn-outline" href="#tampilan">Pelajari Aplikasi</a>
+    </div>
+  </section>
+
+  <!-- Cara kerja -->
+  <section class="section section-tint" id="alur">
+    <div class="inner">
+      <h2 class="section-title">Cara kerjanya</h2>
+      <p class="section-sub">Alur peminjaman barang dari pencatatan sampai pengembalian.</p>
+      <ol class="steps-grid">
+        <li>Petugas masuk dengan akun petugas laboratorium.</li>
+        <li>Pilih satu atau lebih barang beserta jumlahnya.</li>
+        <li>Masukkan data peminjam dari data tersimpan atau isi manual.</li>
+        <li>Ambil foto peminjam melalui kamera.</li>
+        <li>Sistem mengecek &amp; mengunci stok seluruh barang sekaligus.</li>
+        <li>Stok berkurang, transaksi tersimpan, email berisi QR dikirim.</li>
+        <li>Mahasiswa menyimpan lampiran PDF bukti dari email.</li>
+        <li>Saat kembali, petugas mencari transaksi lewat scan QR.</li>
+        <li>Pilih kondisi barang dan foto bukti pengembalian.</li>
+        <li>Stok kembali, status berubah menjadi selesai, email konfirmasi terkirim.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Tutup">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button" aria-label="Sebelumnya">
+      <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" src="" alt="" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" type="button" aria-label="Berikutnya">
+      <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <!-- Download -->
+  <section class="section" id="unduh">
+    <div class="inner">
+      <h2 class="section-title">Download aplikasi</h2>
+      <p class="section-sub">Selalu mengambil versi terbaru dari GitHub Releases secara otomatis.</p>
+
+      <div class="download-grid">
+        <div class="download-main">
+          <div class="dl-item">
+            <div class="dl-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+            </div>
+            <div class="dl-body">
+              <strong>Windows Installer (.exe)</strong>
+              <span id="win-desc">Windows 10/11 • 64-bit • ±127 MB</span>
+            </div>
+            <a class="btn btn-primary btn-small" id="win-btn" href="#" data-state="loading">Unduh</a>
+          </div>
+          <div class="dl-item">
+            <div class="dl-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+            </div>
+            <div class="dl-body">
+              <strong>Metadata Pembaruan (latest.yml)</strong>
+              <span>Dipakai mekanisme pembaruan otomatis di dalam aplikasi.</span>
+            </div>
+            <a class="btn btn-outline btn-small" id="yml-btn" href="#" data-state="loading">Unduh</a>
+          </div>
+          <div class="dl-item">
+            <div class="dl-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></svg>
+            </div>
+            <div class="dl-body">
+              <strong>Semua Rilis</strong>
+              <span>Riwayat lengkap termasuk versi sebelumnya.</span>
+            </div>
+            <a class="btn btn-outline btn-small" id="all-btn" href="#" target="_blank" rel="noopener">Buka</a>
+          </div>
+        </div>
+
+        <aside class="download-side">
+          <h3>Cara memasang</h3>
+          <ol class="steps">
+            <li>Unduh file <code>.exe</code> versi terbaru.</li>
+            <li>Jalankan installer, ikuti langkah pada layar.</li>
+            <li>Pastikan ruang kosong minimal <strong>1 GB</strong>, lalu masuk memakai akun petugas.</li>
+          </ol>
+          <p class="tip">
+            <strong>Tip:</strong> pengguna versi lama cukup menjalankan installer versi ini satu kali.
+            Setelah itu pembaruan berikutnya diterima langsung dari dalam aplikasi.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Riwayat -->
+  <section class="section section-tint" id="riwayat">
+    <div class="inner">
+      <h2 class="section-title">Riwayat versi</h2>
+      <p class="section-sub">Catatan perubahan aplikasi beserta jumlah unduhan.</p>
+      <div id="releases" class="releases">
+        <p class="empty">Memuat riwayat rilis…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="inner narrow">
+      <h2 class="section-title">Pertanyaan umum</h2>
+      <details open>
+        <summary>Apa saja persyaratan sistemnya?</summary>
+        <p>Windows 10 atau 11 versi 64-bit, ruang penyimpanan minimal <strong>1 GB</strong>, dan koneksi internet untuk pengiriman email serta pembaruan aplikasi. Kamera dipakai lewat browser sehingga memerlukan izin kamera.</p>
+      </details>
+      <details>
+        <summary>Apakah perlu memasang Laragon, XAMPP, atau MySQL?</summary>
+        <p>Tidak. Aplikasi sudah membawa PHP runtime dan memakai database SQLite lokal, sehingga komputer petugas bisa langsung dipakai tanpa server tambahan.</p>
+      </details>
+      <details>
+        <summary>Bagaimana cara memperbarui aplikasi?</summary>
+        <p>Pembaruan diperiksa di latar belakang (±20 detik setelah aplikasi siap, lalu tiap 4 jam).Saat versi baru tersedia, pilih <strong>Unduh &amp; Instal</strong>; aplikasi lalu memasang versi baru secara senyap dan membuka kembali. Pemeriksaan manual tersedia dari menu aplikasi.</p>
+      </details>
+      <details>
+        <summary>Akun awal dan pembagian akunnya bagaimana?</summary>
+        <p>Akun awal dibuat otomatis saat pemasangan (<code>admin</code> / <code>password</code>). Admin dapat menambah akun petugas lain melalui menu Kelola User. Ganti password awal segera setelah masuk.</p>
+      </details>
+      <details>
+        <summary>Kenapa harus mengatur email (SMTP) di awal?</summary>
+        <p>Email diperlukan untuk mengirim QR Code dan bukti peminjaman kepada peminjam. Pengaturan dilakukan sekali lewat tombol <strong>Pengaturan Email</strong> pada halaman login, lalu diuji dengan email percobaan.</p>
+      </details>
+      <details>
+        <summary>Bagaimana cara mencadangkan data?</summary>
+        <p>Backup berjalan otomatis setiap 7 hari dengan pengingat untuk admin, dan dapat diunduh manual pada <strong>Pengaturan Sistem → Backup</strong> (arsip <code>.zip</code> berisi database dan seluruh foto). Pemulihan memakai berkas yang sama dengan password admin.</p>
+      </details>
+      <details>
+        <summary>Di mana data aplikasi disimpan?</summary>
+        <p>Seluruh data dan database tersimpan pada folder <code>%APPDATA%\Peminjaman Barang PNP</code>. Untuk recovering manual, tutup aplikasi lalu salin folder tersebut ke media penyimpanan lain.</p>
+      </details>
+      <details>
+        <summary>Kenapa file unduhannya besar?</summary>
+        <p>Installer ini memuat runtime PHP, backend, dan frontend secara utuh agar aplikasi bisa berjalan langsung di komputer petugas tanpa instalasi tambahan.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Lisensi -->
+  <section class="section section-tint" id="lisensi">
+    <div class="inner narrow">
+      <div class="license-card">
+        <h3>Tentang lisensi dan penggunaan</h3>
+        <p>
+          Aplikasi ini merupakan perangkat lunak <strong>proprietary</strong>. Politeknik Negeri Padang
+          (Jurusan Teknologi Informasi) menggunakan aplikasi ini secara gratis berdasarkan hibah
+          non-eksklusif. Institutesi atau pihak lain memerlukan perjanjian lisensi tertulis.
+        </p>
+        <ul class="license-list">
+          <li>Unduh installer bukan berarti memperoleh lisensi; source code aplikasi tetap berada di repositori privat.</li>
+          <li>Menyalin, menjual, atau menerbitkan ulang installer tanpa izin tertulis tidak diperbolehkan.</li>
+          <li>Nama pengembang, pemberitahuan hak cipta, dan daftar komponen pihak ketiga tidak boleh dihapus.</li>
+          <li>Data transaksi adalah milik institusi pengguna dan disimpan pada komputer/infrastruktur sendiri.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Peminjaman Barang PNP — Politeknik Negeri Padang. Dibuat oleh Muhammad Syaiful.</p>
+    <p class="footer-links">
+      <a id="footer-release" href="#" target="_blank" rel="noopener">Rilis GitHub</a>
+      <a id="footer-repo" href="#" target="_blank" rel="noopener">Sumber</a>
+    </p>
+  </footer>
+
+</div>
+</div>
+
+<div class="ripple-layer" id="ripple-layer" aria-hidden="true"></div>
+
+<!-- Indikator unduhan -->
+<div class="dl-toast" id="dl-toast" hidden>
+  <div class="dl-toast-head">
+    <span class="dl-toast-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+    </span>
+    <div>
+      <strong id="dl-toast-title">Menyiapkan unduhan…</strong>
+      <small id="dl-toast-detail">Installer Peminjaman Barang PNP</small>
+    </div>
+    <span class="dl-toast-pct" id="dl-toast-pct">0%</span>
+    <button class="dl-toast-close" id="dl-toast-close" type="button" aria-label="Tutup">&times;</button>
+  </div>
+  <div class="dl-toast-bar"><span id="dl-toast-fill"></span></div>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
