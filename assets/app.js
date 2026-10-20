@@ -113,8 +113,9 @@ async function loadReleases() {
 
 function renderHero(release) {
   if (!release) return;
-  const installer = release.assets.find(isInstaller);
-  const totalDownloads = release.assets.reduce((sum, a) => sum + (a.download_count || 0), 0);
+  const assets = Array.isArray(release.assets) ? release.assets : [];
+  const installer = assets.find(isInstaller);
+  const totalDownloads = assets.reduce((sum, a) => sum + (a.download_count || 0), 0);
   const version = release.tag_name || release.name || "";
 
   const badge = $("#version-badge");
@@ -140,7 +141,7 @@ function renderHero(release) {
     $("#download-btn-text").textContent = `Buka Rilis ${version}`;
   }
 
-  const metadata = release.assets.find(isMetadata);
+  const metadata = assets.find(isMetadata);
   if (metadata) {
     $("#yml-btn").href = metadata.browser_download_url;
     $("#yml-btn").dataset.state = "ready";
@@ -160,8 +161,12 @@ function renderHero(release) {
 
 function renderReleases(list) {
   const container = $("#releases");
+  const toggle = $("#releases-toggle");
+  if (!container) return;
   if (!list.length) {
-    container.innerHTML = '<p class="empty">Belum ada rilis tersedia.</p>';
+    container.innerHTML =
+      '<p class="empty">Belum ada rilis tersedia. Buka <a href="https://github.com/muhammadsyaiful2601/peminjaman-releases/releases" target="_blank" rel="noopener">halaman Rilis di GitHub</a>.</p>';
+    if (toggle) toggle.hidden = true;
     return;
   }
 
@@ -186,7 +191,7 @@ function renderReleases(list) {
         )
         .join("");
 
-      return `<article class="release">
+      return `<article class="release${index === 0 ? " is-latest" : " is-older"}">
           <div class="release-head">
             <span class="release-version">${version}</span>
             ${tags.join(" ")}
@@ -200,6 +205,30 @@ function renderReleases(list) {
         </article>`;
     })
     .join("");
+
+  /* Hanya versi terbaru yang tampil; sisanya disembunyikan sampai diminta. */
+  const older = container.querySelectorAll(".release.is-older");
+  older.forEach((el) => (el.hidden = true));
+
+  if (!toggle) return;
+  if (older.length === 0) {
+    toggle.hidden = true;
+    return;
+  }
+
+  toggle.hidden = false;
+  toggle.innerHTML = `<span>Tampilkan ${older.length} versi lainnya</span>
+    <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>`;
+
+  if (toggle.dataset.bound) return;
+  toggle.dataset.bound = "true";
+  toggle.addEventListener("click", () => {
+    const expanded = toggle.classList.toggle("is-open");
+    older.forEach((el) => (el.hidden = !expanded));
+    toggle.querySelector("span").textContent = expanded
+      ? "Sembunyikan riwayat lama"
+      : `Tampilkan ${older.length} versi lainnya`;
+  });
 }
 
 /* ================= Galeri: marquee berjalan terus + lightbox ================= */
@@ -214,6 +243,7 @@ function initGallery() {
   let clone = null;
   let groupWidth = 0;
   let running = true;
+  let autoScroll = true;
   let frame = null;
 
   /* Foto asli diberi ID agar clone bisa dipetakan kembali. */
@@ -229,6 +259,12 @@ function initGallery() {
     clone.querySelectorAll(".shot").forEach((el, i) => {
       el.dataset.key = String(i);
       el.setAttribute("tabindex", "-1");
+    });
+    /* Video di clone tidak ikut diputar/diunduh. */
+    clone.querySelectorAll("video").forEach((v) => {
+      v.removeAttribute("src");
+      v.querySelectorAll("source").forEach((s) => s.removeAttribute("src"));
+      v.load();
     });
     track.appendChild(clone);
     groupWidth = group.scrollWidth;
@@ -251,7 +287,7 @@ function initGallery() {
 
   /* Satu item_original + clone-nya diputar terus (right to left, tanpa jeda). */
   function loop() {
-    if (running && groupWidth > 0) {
+    if (running && autoScroll && groupWidth > 0) {
       track.scrollLeft += MARQUEE_SPEED;
       if (track.scrollLeft >= groupWidth) track.scrollLeft -= groupWidth;
     }
@@ -265,6 +301,27 @@ function initGallery() {
     if (lightbox.hidden) running = true;
   }
 
+  /* Tombol navigasi/filter menghentikan animasi agar pengguna bisa memilih bagian. */
+  function stopAutoScroll() {
+    autoScroll = false;
+    const btn = $("#gallery-motion");
+    if (btn) {
+      btn.classList.add("is-paused");
+      const label = btn.querySelector("span");
+      if (label) label.textContent = "Lanjutkan animasi";
+    }
+  }
+
+  function startAutoScroll() {
+    autoScroll = true;
+    const btn = $("#gallery-motion");
+    if (btn) {
+      btn.classList.remove("is-paused");
+      const label = btn.querySelector("span");
+      if (label) label.textContent = "Jeda animasi";
+    }
+  }
+
   track.addEventListener("mouseenter", pause);
   track.addEventListener("mouseleave", resume);
   track.addEventListener("touchstart", pause, { passive: true });
@@ -273,24 +330,68 @@ function initGallery() {
 
   $("#gallery-filters").addEventListener("click", (event) => {
     const pill = event.target.closest(".pill");
-    if (!pill) return;
+    if (!pill || pill.id === "gallery-motion") return;
     $("#gallery-filters")
       .querySelectorAll(".pill")
       .forEach((p) => p.classList.toggle("is-active", p === pill));
     applyFilter(pill.dataset.filter);
+    stopAutoScroll();
+    scrollToVisible(0);
   });
 
+  /* Menampilkan satu item saja (terpusat) tanpa gerak continuous. */
+  function scrollToVisible(index) {
+    const items = visibleShots();
+    if (!items.length) return;
+    const clamped = Math.max(0, Math.min(index, items.length - 1));
+    const el = items[clamped];
+    const target = el.offsetLeft - (track.clientWidth - el.clientWidth) / 2;
+    track.scrollTo({ left: Math.max(0, target), behavior: "smooth" });
+  }
+
+  function currentVisibleIndex() {
+    const items = visibleShots();
+    if (!items.length) return 0;
+    const center = track.scrollLeft + track.clientWidth / 2;
+    let best = 0;
+    let bestDist = Infinity;
+    items.forEach((el, i) => {
+      const elCenter = el.offsetLeft + el.clientWidth / 2;
+      const dist = Math.abs(elCenter - center);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = i;
+      }
+    });
+    return best;
+  }
+
   function stepBy(direction) {
-    const step = (originals[0] ? originals[0].offsetWidth + 24 : 280) * direction;
-    track.scrollTo({ left: track.scrollLeft + step, behavior: "smooth" });
-    window.setTimeout(() => {
-      if (groupWidth > 0 && track.scrollLeft >= groupWidth) track.scrollLeft -= groupWidth;
-      if (groupWidth > 0 && track.scrollLeft < 0) track.scrollLeft += groupWidth;
-    }, 500);
+    stopAutoScroll();
+    const items = visibleShots();
+    if (!items.length) return;
+    const next = currentVisibleIndex() + direction;
+    if (next < 0 || next >= items.length) return;
+    scrollToVisible(next);
   }
 
   $("#gallery-next").addEventListener("click", () => stepBy(1));
   $("#gallery-prev").addEventListener("click", () => stepBy(-1));
+
+  const motionBtn = $("#gallery-motion");
+  if (motionBtn) {
+    /* Animasi berjalan sejak awal; tombol berfungsi sebagai jeda/lanjut. */
+    const label = motionBtn.querySelector("span");
+    if (label) label.textContent = "Jeda animasi";
+    motionBtn.addEventListener("click", () => {
+      if (autoScroll) {
+        stopAutoScroll();
+      } else {
+        startAutoScroll();
+        track.scrollLeft = 0;
+      }
+    });
+  }
 
   /* Lightbox */
   let lightboxIndex = 0;
@@ -300,10 +401,31 @@ function initGallery() {
     if (!items.length) return;
     lightboxIndex = (keyIndex + items.length) % items.length;
     const item = items[lightboxIndex];
+    const caption = item.querySelector("figcaption");
     const img = item.querySelector("img");
-    $("#lightbox-img").src = img.src;
-    $("#lightbox-img").alt = img.alt;
-    $("#lightbox-caption").textContent = item.querySelector("figcaption").textContent;
+    const video = item.querySelector("video");
+
+    $("#lightbox-caption").textContent = caption ? caption.textContent : "";
+
+    if (video) {
+      const lbImg = $("#lightbox-img");
+      const lbVideo = $("#lightbox-video");
+      lbImg.hidden = true;
+      lbVideo.hidden = false;
+      lbVideo.src = video.querySelector("source") ? video.querySelector("source").src : "";
+      lbVideo.poster = video.poster || "";
+      lbVideo.load();
+    } else {
+      const lbImg = $("#lightbox-img");
+      const lbVideo = $("#lightbox-video");
+      lbImg.hidden = false;
+      lbVideo.hidden = true;
+      lbVideo.removeAttribute("src");
+      lbVideo.load();
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+    }
+
     lightbox.hidden = false;
     document.body.style.overflow = "hidden";
     pause();
@@ -312,12 +434,20 @@ function initGallery() {
   function closeLightbox() {
     lightbox.hidden = true;
     document.body.style.overflow = "";
+    const lbVideo = $("#lightbox-video");
+    if (lbVideo) {
+      lbVideo.pause();
+      lbVideo.removeAttribute("src");
+      lbVideo.load();
+    }
     resume();
   }
 
   track.addEventListener("click", (event) => {
     const item = event.target.closest(".shot");
     if (!item || item.hidden) return;
+    /* Klik pada video tidak membuka lightbox. */
+    if (event.target.closest("video")) return;
     const key = Number(item.dataset.key);
     showLightbox(visibleShots().findIndex((el) => Number(el.dataset.key) === key));
   });
@@ -345,6 +475,36 @@ function initGallery() {
     track.scrollLeft = 0;
   });
   loop();
+}
+
+/* ================= Video demo (hanya dimuat saat diputar) ================= */
+function initVideoDemo() {
+  const video = $("#demo-video");
+  const overlay = $("#video-overlay");
+  const playBtn = $("#video-play");
+  if (!video || !overlay || !playBtn) return;
+
+  const source = video.querySelector("source");
+  const src = source ? source.getAttribute("src") : null;
+
+  playBtn.addEventListener("click", () => {
+    /* Src baru dipasang saat klik play agar browser tidak mengunduh file. */
+    if (src && !video.getAttribute("src") && (!source || !source.getAttribute("src"))) {
+      if (source) source.setAttribute("src", src);
+      else video.setAttribute("src", src);
+      video.load();
+    }
+    overlay.classList.add("is-hidden");
+    const attempt = video.play();
+    if (attempt && typeof attempt.catch === "function") {
+      attempt.catch(() => {
+        overlay.classList.remove("is-hidden");
+      });
+    }
+  });
+
+  video.addEventListener("play", () => overlay.classList.add("is-hidden"));
+  video.addEventListener("ended", () => overlay.classList.remove("is-hidden"));
 }
 
 /* ================= Gambar & navbar ================= */
@@ -394,8 +554,10 @@ function initNav() {
 }
 
 function initScrollAnimations() {
+  /* Hanya elemen di dalam section yang dianimasikan — section itu sendiri
+     tidak pernah disembunyikan supaya area kosong (putih) tidak muncul. */
   const targets = document.querySelectorAll(
-    ".section, .hero-visual, .download-main, .download-side, .license-card"
+    ".hero-copy, .hero-visual, .download-main, .download-side, .license-card, .carousel, .filters"
   );
   targets.forEach((el) => el.classList.add("reveal"));
 
@@ -419,10 +581,33 @@ function initScrollAnimations() {
         }
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    { threshold: 0.02, rootMargin: "0px 0px -30px 0px" }
   );
 
   document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+  /* Pengaman: elemen yang berada di viewport (atau section tinggi) tetap tampil. */
+  window.setTimeout(() => {
+    document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) el.classList.add("is-visible");
+    });
+  }, 600);
+
+  /* Bila section sangat tinggi, IntersectionObserver tidak pernah terpenuhi penuh. */
+  window.addEventListener(
+    "scroll",
+    () => {
+      document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
+          el.classList.add("is-visible");
+          observer.unobserve(el);
+        }
+      });
+    },
+    { passive: true }
+  );
 }
 
 /* ================= Efek riak air dari titik klik ================= */
@@ -604,6 +789,7 @@ async function init() {
   $("#year").textContent = new Date().getFullYear();
   attachImageFallbacks();
   initGallery();
+  initVideoDemo();
   initNav();
   initScrollAnimations();
   initScrollSpy();

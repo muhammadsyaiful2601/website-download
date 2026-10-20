@@ -1,14 +1,13 @@
-# Tangkapan layar asli
+# Tangkapan layar aplikasi
 
-Foto-foto di folder ini dipakai langsung oleh website.
+Foto di folder ini dipakai langsung oleh website (hero + galeri + fallback).
 
 | Nama file | Isi | Dipakai di |
 | --- | --- | --- |
-| `splash.png` | Loading awal / splash screen | Galeri |
-| `login.png` | Halaman masuk akun petugas | Galeri |
 | `dashboard.png` | Dashboard operasional | Hero + galeri |
+| `login.png` | Halaman masuk akun petugas | Galeri |
 | `form-peminjaman.png` | Form peminjaman barang baru | Galeri |
-| `white-label.png` | Tampilan white label / branding instansi | Galeri |
+| `pengembalian.png` | Verifikasi pengembalian / scan QR | Hero (kartu kecil) + galeri |
+| `white-label.png` | Pengaturan sistem & branding instansi | Galeri |
+| `splash.png` | Loading awal aplikasi | Galeri |
 | `logo-aplikasi.png` | Logo resmi aplikasi (PNP Padang) | Disalin ke `assets/logo.png`, dipakai di header & favicon |
-
-Kalau sebuah file dihapus, website otomatis menampilkan gambar bawaan (SVG) di `assets/screenshot-*.svg`.

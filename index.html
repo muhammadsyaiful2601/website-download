@@ -67,12 +67,12 @@
       <div class="mockup">
         <div class="mockup-bar">
           <span></span><span></span><span></span>
-          <em>dashboard — peminjaman barang pnp</em>
+          <em>peminjaman — dashboard operasional</em>
         </div>
-        <img src="assets/shots/dashboard.png" data-fallback="assets/screenshot-dashboard.svg" alt="Tampilan dashboard aplikasi" />
+        <img src="assets/shots/dashboard.png" alt="Tampilan dashboard aplikasi" />
       </div>
       <div class="mockup-card">
-        <img src="assets/shots/splash.png" data-fallback="assets/screenshot-splash.svg" alt="Splash screen aplikasi" />
+        <img src="assets/shots/pengembalian.png" alt="Verifikasi pengembalian barang" />
       </div>
     </div>
   </section>
@@ -90,7 +90,12 @@
         <button class="pill" data-filter="login" type="button">Login</button>
         <button class="pill" data-filter="dashboard" type="button">Dashboard</button>
         <button class="pill" data-filter="peminjaman" type="button">Peminjaman</button>
+        <button class="pill" data-filter="pengembalian" type="button">Pengembalian</button>
         <button class="pill" data-filter="branding" type="button">White Label</button>
+        <button class="pill pill-motion" id="gallery-motion" type="button" title="Lanjutkan / jeda animasi galeri">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span>Lanjutkan animasi</span>
+        </button>
       </div>
 
       <div class="carousel">
@@ -101,24 +106,28 @@
         <div class="carousel-track is-marquee" id="gallery-track">
           <div class="marquee-group" id="gallery-group">
             <figure class="shot" data-category="splash">
-              <img src="assets/shots/splash.png" data-fallback="assets/screenshot-splash.svg" alt="Splash screen aplikasi" loading="lazy" />
+              <img src="assets/shots/splash.png" alt="Loading awal aplikasi" loading="lazy" />
               <figcaption>Loading awal — logo instansi dan proses menyiapkan aplikasi.</figcaption>
             </figure>
             <figure class="shot" data-category="login">
-              <img src="assets/shots/login.png" data-fallback="assets/screenshot-login.svg" alt="Halaman masuk akun petugas" loading="lazy" />
+              <img src="assets/shots/login.png" alt="Halaman masuk akun petugas" loading="lazy" />
               <figcaption>Masuk akun — akses khusus petugas laboratorium.</figcaption>
             </figure>
             <figure class="shot" data-category="dashboard">
-              <img src="assets/shots/dashboard.png" data-fallback="assets/screenshot-dashboard.svg" alt="Dashboard operasional" loading="lazy" />
-              <figcaption>Dashboard — ringkasan barang, peminjaman, dan pengembalian.</figcaption>
+              <img src="assets/shots/dashboard.png" alt="Dashboard operasional" loading="lazy" />
+              <figcaption>Dashboard — ringkasan transaksi, barang yang sedang dipinjam, dan inventaris.</figcaption>
             </figure>
             <figure class="shot" data-category="peminjaman">
-              <img src="assets/shots/form-peminjaman.png" data-fallback="assets/screenshot-form.svg" alt="Form peminjaman barang baru" loading="lazy" />
-              <figcaption>Form peminjaman — pilih barang dan data peminjam.</figcaption>
+              <img src="assets/shots/form-peminjaman.png" alt="Form peminjaman barang baru" loading="lazy" />
+              <figcaption>Form peminjaman — pilih barang dan data peminjam, QR dikirim via email.</figcaption>
+            </figure>
+            <figure class="shot" data-category="pengembalian">
+              <img src="assets/shots/pengembalian.png" alt="Verifikasi pengembalian barang" loading="lazy" />
+              <figcaption>Pengembalian — scan QR, pilih kondisi barang, dan foto bukti pengembalian.</figcaption>
             </figure>
             <figure class="shot" data-category="branding">
-              <img src="assets/shots/white-label.png" data-fallback="assets/screenshot-splash.svg" alt="Tampilan white label instansi" loading="lazy" />
-              <figcaption>White label — identitas instansi mengikuti pengaturan branding.</figcaption>
+              <img src="assets/shots/white-label.png" alt="Pengaturan branding instansi" loading="lazy" />
+              <figcaption>Pengaturan sistem — identitas instansi, kop surat, dan aset branding.</figcaption>
             </figure>
           </div>
         </div>
@@ -126,6 +135,40 @@
         <button class="nav-btn nav-next" id="gallery-next" type="button" aria-label="Berikutnya">
           <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video demo (terpisah dari galeri) -->
+  <section class="section" id="video">
+    <div class="inner">
+      <span class="eyebrow">Video</span>
+      <h2 class="section-title">Lihat aplikasi beraksi</h2>
+      <p class="section-sub">
+        Video demo 130&nbsp;MB — filenya baru diunduh ke perangkat Anda saat video ini diputar.
+      </p>
+
+      <div class="video-wrap">
+        <video
+          id="demo-video"
+          class="demo-video"
+          preload="none"
+          playsinline
+          controls
+          poster="assets/shots/dashboard.png"
+          aria-label="Demo video aplikasi Peminjaman Barang PNP"
+        >
+          <source src="assets/video/demo-aplikasi.mp4" type="video/mp4" />
+          Browser Anda tidak mendukung pemutaran video.
+        </video>
+
+        <div class="video-overlay" id="video-overlay">
+          <button class="video-play" id="video-play" type="button">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <span>Putar video demo</span>
+          </button>
+          <small>Video tidak diunduh otomatis — baru dimuat saat Anda menekan play.</small>
+        </div>
       </div>
     </div>
   </section>
@@ -232,10 +275,11 @@
     <button class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button" aria-label="Sebelumnya">
       <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
     </button>
-    <figure class="lightbox-figure">
-      <img id="lightbox-img" src="" alt="" />
-      <figcaption id="lightbox-caption"></figcaption>
-    </figure>
+  <figure class="lightbox-figure">
+    <img id="lightbox-img" src="" alt="" />
+    <video id="lightbox-video" preload="none" controls playsinline hidden></video>
+    <figcaption id="lightbox-caption"></figcaption>
+  </figure>
     <button class="lightbox-nav lightbox-next" id="lightbox-next" type="button" aria-label="Berikutnya">
       <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
     </button>
@@ -305,6 +349,8 @@
       <div id="releases" class="releases">
         <p class="empty">Memuat riwayat rilis…</p>
       </div>
+
+      <button class="releases-toggle" id="releases-toggle" type="button" hidden></button>
     </div>
   </section>
 
